@@ -1,0 +1,42 @@
+<h1>{{title}}</h1><hr>
+<div class="row">
+    <div class="col-md-4">
+        <h3>Dane teleadresowe</h3>
+        <hr>
+        <p><h4>{{content.title}}</h4>
+            {{content.name}}</br>
+            {{content.address1}}</br>
+            {{content.address2}}</br>
+            {{# each content.phoneNumbers }}
+                Tel. {{ this }}</br>
+            {{/each}}
+            www: {{ content.wwwUrl }}</br>
+            email: {{ content.email }}</br>
+        </p>
+        <h3>Skontaktuj się z nami</h3><hr>
+        <p> <form name="contactForm" data-ng-submit="sendMail()">
+            <div class="form-group">
+                 <label for="exampleInputEmail2" style="color: white">Imie i Nazwisko</label>
+                 <input type="text" class="form-control" id="exampleInputName2" name="name" placeholder="Jan Nowak" data-ng-model="contactName">
+            </div>
+            <div class="form-group">
+                 <label for="exampleInputEmail2" style="color: white" >Email</label>
+                 <input type="email" class="form-control" id="exampleInputEmail2" name="email" placeholder="jan.nowak@example.com" data-ng-model="contactEmail">
+            </div>
+            <div class="form-group ">
+                  <label for="exampleInputEmail2" style="color: white" >Twoja wiadomość</label>
+                  <textarea  class="form-control" name="content" placeholder="Treść wiadomości" required data-ng-model="contactMsg"></textarea>
+            </div>
+            <button type="submit" class="md-primary"
+                   ng-class="{'md-raised md-primary':
+                   (contactForm.$dirty && contactForm.$valid)}" aria-label ="sth">Wyslij e-mail</button>
+        </form></p>
+    </div>
+    <div class="col-md-8">
+        <h3>Mapa</h3>
+        <hr>
+        <p id="mapBox"><iframe src="{{ content.mapUrl }}" width="100%" height="550" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </p>
+    </div>
+</div>
+

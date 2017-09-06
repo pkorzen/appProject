@@ -1,0 +1,47 @@
+<nav id="navbar" class="navbar">
+    <div class="container-fluid fix-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" style="font-family: 'Dancing Script', cursive">Czterech Fotografia</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/about">O mnie</a></li>
+                <li><a href="/portfolio">Portfolio</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Strefa Klienta <span class="caret"></span></a>
+                    <ul id="dropdown-menu" class="dropdown-menu">
+                        {{#if login}}
+                            <li><a href="/user/profile">Profile</a></li>
+                            {{#if adminLogin}}
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/admin/adduser">Dodaj Urzytkownika</a></li>
+                                <li><a href="/admin/userlist">UserList</a></li>
+
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/admin/contact-edit">Edytuj Kontakt</a></li>
+                                <li><a href="/admin/about-edit">Edytuj O mnie</a></li>
+                                <li><a href="/admin/landing-edit">Edytuj Slider</a></li>
+                                <li><a href="/admin/manage-gallery">Zarządzaj galerią</a></li>
+                            {{/if}}
+
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/user/logout">Wyloguj</a></li>
+                        {{else}}
+                            <li><a href="/user/signin">Zaloguj Sie</a></li>
+                        {{/if}}
+                    </ul>
+                </li>
+                <li><a href="/contact">Kontakt</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

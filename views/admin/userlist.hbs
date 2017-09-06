@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class='alert alert-danger' id="delete-msg">
+             User removed!
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Email</th>
+                <th>isAdmin?</th>
+            </tr>
+            </thead>
+            <tbody>
+                {{#each users}}
+                    <tr>
+                        <td>{{this.email}}</td>
+                        <td>{{this.admin}}</td>
+                        <td><button type="button" class="pull-right btn btn-xs btn-danger deleteUser" user-id="{{this._id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button></td>
+                    </tr>
+                {{/each}}    
+            </tbody>
+        </table>
+    </div>
+</div>

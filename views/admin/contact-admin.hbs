@@ -1,0 +1,60 @@
+<h1>Edit Contact</h1><hr>
+<div class="row">
+    {{#if hasErrors}}
+        {{#each messages}}
+            <div class='alert alert-danger'>
+                {{this}}
+            </div>
+        {{/each}}
+    {{/if}}
+    <form action="/admin/contact-edit" method="post">
+        <div class="col-md-4">
+            <h3>Dane teleadresowe</h3>
+            <hr>
+            <div class="input-group">
+                <span class="input-group-addon">Title</span>
+                <input type="text" id="titleContact" name="titleContact" class="form-control" value="{{content.title}}">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Name</span>
+                <input type="text" id="nameContact" name="nameContact" class="form-control" value="{{content.name}}">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Address1</span>
+                <input type="text" id="address1Contact" name="address1Contact" class="form-control" value="{{content.address1}}">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Address2</span>
+                <input type="text" id="address2Contact" name="address2Contact" class="form-control" value="{{content.address2}}">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">phoneNumber1</span>
+                <input type="text" id="phoneNumber1Contact" name="phoneNumber1Contact" class="form-control" value="{{content.phoneNumbers.[0]}}">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">phoneNumber2</span>
+                <input type="text" id="phoneNumber2Contact" name="phoneNumber2Contact" class="form-control" value="{{content.phoneNumbers.[1]}}">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">wwwUrl</span>
+                <input type="text" id="wwwUrlContact" name="wwwUrlContact" class="form-control" value="{{content.wwwUrl}}">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Email</span>
+                <input type="text" id="emailContact" name="emailContact" class="form-control" value="{{content.email}}">
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3>Mapa</h3>
+            <hr>
+            <div class="input-group">
+                <span class="input-group-addon">Map address</span>
+                <input type="text" id="mapContact" name="mapContact" class="form-control" value="{{content.mapUrl}}">
+            </div>
+            <p id="mapBox"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.3310154366786!2d19.93487911655635!3d50.06136217942365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b0df90f6453%3A0xbb2e110fa28d685b!2zUnluZWsgR8WCw7N3bnksIEtyYWvDs3c!5e0!3m2!1spl!2spl!4v1503245044990" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </p>
+        </div>
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <button type="submit" class="btn btn-primary pull-right">Save Changes</button>
+    </form>
+</div>

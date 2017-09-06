@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="slider">
+
+  </div>
+    <div class="col-md-8">
+        <div class="grey-bg">
+            <div class="navLanding">
+            <p class="col-md-8 navLanding-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut elit id tellus malesuada elementum.
+              Nulla a mi nec arcu sodales luctus. Vivamus ornare sed enim ac mattis. Duis ac ligula nec libero cursus interdum.
+              Vivamus sapien ipsum, accumsan eget fringilla id, placerat facilisis nibh.
+              Praesent varius leo a velit molestie, sit amet egestas augue pellentesque. Nulla facilisi.
+              Suspendisse venenatis mattis sodales. Curabitur cursus iaculis justo, et tempus diam vulputate in.
+              Phasellus placerat diam vel sapien feugiat, ut sagittis nisi fermentum.
+              Mauris lobortis ante quis ante efficitur, et gravida odio mollis. Curabitur id ultricies justo.
+              Phasellus volutpat commodo massa, nec mattis nulla elementum ac.</p>
+              <h1 class="col-md-4 navLanding-head">Patryk Czerech Fotografia</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+      $('.slider').fadeIn(1000);
+      $('.slider').css('background-image', 'url(/images/background-slider/' + "{{images}}".split(",")[0] + ')');
+    });
+    $(function () {
+        var imagesArr = "{{images}}".split(",");
+        console.log(imagesArr);
+        var i = 0;
+         setInterval(function(){
+            i++;
+            if(i >= imagesArr.length) i = 0;
+            console.log(imagesArr[i] + ' ' + i);
+            $('.slider').fadeOut(1500, function(){
+                $(this).css('background-image', 'url(/images/background-slider/' + imagesArr[i] + ')');
+                $(this).fadeIn(1500);
+            });
+        }, 7000);
+    });
+</script>

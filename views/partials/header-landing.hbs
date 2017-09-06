@@ -1,0 +1,18 @@
+<nav id="navbar" class="navbar">
+    <div class="container-fluid fix-fluid">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 col-sm-12">
+            <ul class="nav navbar-nav centered row col-md-12 col-sm-12">
+                <li class="col-md-3 col-sm-3"><a href="/blog">Blog</a></li>
+                <li class="col-md-3 col-sm-3"><a href="/portfolio">Portfolio</a></li>
+                {{#if login}}
+                <li class="col-md-3 col-sm-3"><a href="/user/logout">Wyloguj</a></li>
+                {{else}}
+                    <li class="col-md-3 col-sm-3"><a href="/user/signin">Zaloguj Sie</a></li>
+                {{/if}}
+                <li class="col-md-3 col-sm-3"><a href="/contact">Kontakt</a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+</nav>

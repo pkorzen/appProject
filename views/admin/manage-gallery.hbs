@@ -1,0 +1,70 @@
+<!--{{dirs}}-->
+
+        <!--{{#each dirs}}-->
+<!--<h1>{{this}}</h1><br>-->
+        <!--{{/each}}-->
+
+<h1>Gallery management</h1>
+<hr>
+<div class="row">
+    {{#if hasErrors}}
+        {{#each messages}}
+            <div class='alert alert-danger'>
+                {{this}}
+            </div>
+        {{/each}}
+    {{/if}}
+</div>
+
+<form action="/admin/manage-gallery" method="post">
+    <div class="form-group">
+        <label>Dodaj folder</label><br>
+        <input name="link" type="text" placeholder="Wpisz tytuł">
+        <input type="submit" value="Dodaj"/>
+    </div>
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+</form>
+
+
+<!--Problem polega na tym, że jesli jest kodowanie enctype="multipart/form-data" to przesle się zdjęcie, ale nie przesle się nazwa folderu-->
+<!--do którego chcemy wrzucic zdjecie, kiedy usuniemy enctype="multipart/mixed" to przesle sie nazwa folderu ale zdjecie sie-->
+<!--nie przesle...-->
+
+<div class="row">
+    <div class="col-sm-4">
+        <form id="imageBgUpload" enctype="multipart/form-data" action="/api/imagesgallery" method="post">
+            <!---->
+            <div class="form-group">
+
+                <label for="file">Upload Photo</label><br><br>
+                <label>Select directory</label><br>
+
+                <select name='dirc'>
+                    {{#each dirs}}
+                        <option value={{this}}>{{this}}</option>
+                    {{/each}}
+                </select>
+
+
+                <input type="file" class="btn btn-default inp" name="filesInput" id="filex" multiple/>
+            </div>
+            <button type="submit" class="btn btn-default">Upload</button>
+        </form>
+    </div>
+</div>
+<hr>
+
+{{#each images}}
+    <div class="row">
+        {{#each this}}
+            <div class="col-sm-4">
+                <img src="/images/background-slider/{{this}}" class="img-responsive img-thumbnail" alt="{{this}}">
+                <button type="button" class="btn btn-danger imgBgDel" file-name="{{this}}">
+                    Delete
+                </button>
+            </div>
+
+        {{/each}}
+    </div></br>
+{{/each}}

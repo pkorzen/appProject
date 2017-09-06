@@ -1,0 +1,105 @@
+<div ng-app="blog" ng-controller="blogController">
+  <div class="row blog-site">
+    <div class="post-section col-md-10">
+      <div class="main-blog" ng-repeat="post in posts | filter:searchText" style="background: url({[{ post.mainImagePath }]})">
+        <div class="post-background transparent-background" >
+              <p class="main-header col-md-12" ng-if="!isadmin"><a ng-click="postID(post._id, post.title)">{[{ post.title }]}</a></p>
+              <p class="main-header col-md-11" ng-if="isadmin"><a ng-click="postID(post._id, post.title)">{[{ post.title }]}</a></p>
+              <div class="post-admin-buttons col-md-1">
+                <button type="button" class="btn btn-danger" ng-if="isadmin" data-toggle="modal" data-target="#modal{[{$index}]}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+              </div>
+              <div class="col-md-12">{[{ post.shortDesc }]}</div>
+            <div class="bottom-row">
+              <hr>
+              <div class="pull-left">
+                Wyświetleń: {[{ post.visitors }]}
+              </div>
+              <div class="pull-right">
+                <a ng-click="postID(post._id, post.title)">
+                  Czytaj Dalej
+                  <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+        </div>
+        <!-- Modal delete post -->
+        <div id="modal{[{$index}]}" class="modal fade" role="dialog" >
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-body">
+                <p>Jesteś pewien usunięcia <strong>{[{ post.title }]}</strong>?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" ng-if="isadmin" ng-click="deletePost(post._id)" data-dismiss="modal">Usuń</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Zamknij</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="side-info col-md-2">
+        <input class="search-input" ng-model="searchText" placeholder="Szukaj">
+        <div class="last-sessions row">
+          <p class="side-header">Ostatnie sesje:</p>
+          <ul class="side-content">
+            <li ng-repeat="post in posts | orderBy: 'time':true | limitTo: 5 "><a ng-href="/blog/posts/{[{post.title | noSpaces}]}"> {[{ post.title }]} <span class="inside-bracket"> ({[{ post.time | date: 'd/MM/yy' }]}) </span> </a></li>
+          </ul>
+        </div>
+        <hr>
+        <div class="popular-posts row">
+          <p class="side-header">Najpopularniejsze posty:</p>
+          <ul class="side-content">
+            <li ng-repeat='post in posts |  orderBy: "visitors":true | limitTo: 5'><a ng-href="/blog/posts/{[{post._id}]}"> {[{ post.title }]} <span class="inside-bracket"> ({[{ post.visitors }]}) </span></a></li>
+          </ul>
+      </div>
+      <button type="button" class="btn btn-success" ng-if="isadmin" data-toggle="modal" data-target="#modalAddPost"><i class="fa fa-plus" aria-hidden="true"></i> Dodaj post</button>
+    </div>
+  </div>
+  <!-- Modal add post -->
+  <div id="modalAddPost" class="modal fade" role="dialog" >
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-title">
+          <h2>Dodaj post</h2>
+        </div>
+        <form>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Tytuł: </label> <input type="text" class="form-control" ng-model='postTitle'>
+            </div>
+            <div class="form-group">
+              <label>Krótki opis: </label> <textarea class="form-control" rows="2" ng-model='postShort'></textarea>
+            </div>
+            <div class="form-group">
+              <label>Opis: </label> <textarea class="form-control" rows="5" ng-model='postLong'></textarea>
+            </div>
+            <div class="form-group">
+              <ul>
+                <li>Tu będzie przypisywanie sesji</li>
+              </ul>
+              <!--<button ngf-select='uploadFiles($files, $invalidFiles)' accept='image/*' multiple>Dodaj pliki</button>
+              Zdjęcia sesji:
+              <ul>
+                <li ng-repeat="f in files" style="font:smaller"> {[{f.name}]} {[{f.$errorParam}]}
+                  <span class="progress" ng-show="f.progress >= 0">
+                    <div style="width:{[{f.progress}]}%" ng-bind="f.progress + '%'"></div>
+                  </span>
+                </li>
+                <li ng-repeat="f in errFiles" style="font:smaller">{[{f.name}]} {[{f.$error}]} {[{f.$errorParam}]}  </li>
+              </ul>-->
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" ng-click='sendPost()'>Zapisz</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click='reset()'>Zamknij</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="javascripts/blogScripts.js"></script>
+<link rel="stylesheet" href="/stylesheets/blogStyles.css">
