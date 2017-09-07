@@ -73,7 +73,6 @@ app.use('/js', express.static(__dirname + '/node_modules/angular/'));
 app.use('/js', express.static(__dirname + '/node_modules/angular-ui-bootstrap/dist/'));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 
-
 app.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated();
     res.locals.adminLogin = (req.isAuthenticated() && req.user.admin);

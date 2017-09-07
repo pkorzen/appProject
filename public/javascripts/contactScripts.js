@@ -1,14 +1,13 @@
-'use strict';
 
 angular
-  .module('contactApp', ['ngMaterial'])
+  .module('contactApp', ['ngRoute', 'ngMaterial'])
   .config(function($interpolateProvider, $qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
     $interpolateProvider.startSymbol('{[{');
     $interpolateProvider.endSymbol('}]}');
   })
-  .controller('contactController', ['$scope', '$http',
-        function($scope, $http){
+  .controller('contactController', ['$scope', '$http','$mdToast', '$animate',
+        function($scope, $http, $mdToast, $animate){
 
      $scope.sendMail = function() {
 
