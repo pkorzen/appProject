@@ -158,6 +158,41 @@ router.get('/contact', function(req, res, next) {
 });
 
 
+// SEND EMAIL
+var nodemailer = require('nodemailer');
+
+router.post('/contact', function(req, res){
+
+    var data = req.body;
+    console.log(data);
+    console.log(data.contactMsg);
+
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'photophotoexapmle@gmail.com',
+        pass: 'photophoto111'
+      }
+    });
+
+    var mailOptions = {
+      from: data.contactMail,
+      to: 'photophotoexapmle@gmail.com',
+      subject: data.name + ' Przysyła nową wiadomość',
+      text: 'Od: ' + data.email + "\n\n\n" + data.message
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+});
+
+
+
 router.delete('/api/imagesbg/:id', isAdmin, function(req, res, next){
     var filePath = './public/images/background-slider/' + req.params.id;
     console.log(filePath);
