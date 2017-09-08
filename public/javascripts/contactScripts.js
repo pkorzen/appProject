@@ -1,6 +1,6 @@
 
 angular
-  .module('contactApp', ['ngRoute', 'ngMaterial'])
+  .module('contactApp', ['ngMaterial'])
   .config(function($interpolateProvider, $qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
     $interpolateProvider.startSymbol('{[{');
@@ -14,10 +14,16 @@ angular
        $mdToast.show(
          $mdToast.simple()
            .textContent('Simple Toast!')
-           .position('top')
+           .position('bottom')
+           .highlightAction(true)
+           .highlightClass('row')
            .hideDelay(3000)
        );
      };
 
      console.log("hey hey hello");
   }]);
+
+
+  http://plnkr.co/edit/R4vGhrSYvKJREMV7Q4rC?p=preview
+  https://www.youtube.com/watch?v=Ftp1nUVyXsQ
