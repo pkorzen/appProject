@@ -14,21 +14,21 @@
             email: {{ content.email }}</br>
         </p>
         <h3>Skontaktuj się z nami</h3><hr>
-        <p> <form [formGroup]="contactForm" ng-app="contactApp" ng-controller="contactController" data-ng-submit="sendMail()" novalidate="novalidate">
+        <p> <form name="contactForm1" ng-app="contactApp" ng-controller="contactController" data-ng-submit="sendMail(contactForm,contactForm1)" novalidate="novalidate">
 
             <div class="form-group">
                  <label for="exampleInputEmail2" style="color: white">Imie i Nazwisko</label>
-                 <input type="text" class="form-control" id="exampleInputName2" name="name" placeholder="Jan Nowak" data-ng-model="contactName"
+                 <input type="text" class="form-control" id="exampleInputName2" name="name" placeholder="Jan Nowak" data-ng-model="contactForm.contactName"
                     required="" ng-minlength="3" ng-maxlength="255">
             </div>
             <div class="form-group">
                  <label for="exampleInputEmail2" style="color: white" >Email</label>
                  <input type="email" class="form-control" id="exampleInputEmail2" name="email" placeholder="jan.nowak@example.com"
-                        data-ng-model="contactEmail" >
+                        data-ng-model="contactForm.contactEmail" >
             </div>
             <div class="form-group ">
                   <label for="exampleInputEmail2" style="color: white" >Twoja wiadomość</label>
-                  <textarea  class="form-control" name="content" placeholder="Treść wiadomości" required data-ng-model="contactMsg"
+                  <textarea  class="form-control" name="content" placeholder="Treść wiadomości" required data-ng-model="contactForm.contactMsg"
                              required="" ng-minlength="10" ng-maxlength="400"></textarea>
 
             </div>
@@ -51,4 +51,5 @@
 <script src="https://code.angularjs.org/1.4.3/angular-route.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
 <script src="https://cdn.rawgit.com/jonsamwell/angular-auto-validate/master/dist/jcs-auto-validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-validate/1.2.3/validate.min.js"></script>
 

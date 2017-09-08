@@ -1,39 +1,32 @@
 angular
-  .module('contactApp', ['ngMaterial','jcs-autoValidate'])
+  .module('contactApp', ['ngMaterial','jcs-autoValidate','ngRoute'])
   .config(function($interpolateProvider, $qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
     $interpolateProvider.startSymbol('{[{');
     $interpolateProvider.endSymbol('}]}');
   })
   .controller('contactController', ['$scope', '$http','$mdToast', '$animate',
-        function($scope, $http, $mdToast, $animate){
+        function($scope, $http, $mdToast, $animate, $setViewValue){
 
-     $scope.sendMail = function() {
+     $scope.sendMail = function(contactForm,contactForm1) {
 
-        var mail = {
-          name: this.contactName,
-          email: this.contactEmail,
-          message: this.contactMsg
-        }
-        console.log(mail);
-        $http.post('/contact', mail);
+        var next = contactForm;
 
-
+        console.log(next);
+        $http.post('/contact', next);
 
         $mdToast.show(
            $mdToast.simple()
-               .textContent('Dziękujemy za wiadomość ' + mail.name)
+               .textContent('Dziękujemy za wiadomość ' + contactForm.contactName)
                .position('bottom')
                .highlightAction(true)
                .highlightClass('row')
                .hideDelay(5000)
         );
 
-        //$scope.contactName = null;
-        $scope.contactName.$setPristine();
+    contactForm1.$setPristine();
+    $scope.contactForm={};
      };
 
      console.log("hey hey hello");
   }]);
-
-

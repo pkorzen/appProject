@@ -165,7 +165,6 @@ router.post('/contact', function(req, res){
 
     var data = req.body;
     console.log(data);
-    console.log(data.contactMsg);
 
     var transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -176,10 +175,10 @@ router.post('/contact', function(req, res){
     });
 
     var mailOptions = {
-      from: data.contactMail,
+      from: data.contactEmail,
       to: 'photophotoexapmle@gmail.com',
-      subject: data.name + ' Przysyła nową wiadomość',
-      text: 'Od: ' + data.email + "\n\n\n" + data.message
+      subject: data.contactName + ' Przysyła nową wiadomość',
+      text: 'Od: ' + data.contactEmail + "\n\n\n" + data.contactMsg
     };
 
     transporter.sendMail(mailOptions, function(error, info){
@@ -190,8 +189,6 @@ router.post('/contact', function(req, res){
       }
     });
 });
-
-
 
 router.delete('/api/imagesbg/:id', isAdmin, function(req, res, next){
     var filePath = './public/images/background-slider/' + req.params.id;
